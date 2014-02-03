@@ -1,6 +1,18 @@
 SampleApp::Application.routes.draw do
-  get "users/new"
+
+
+  #  "resources :users" doesn’t just add a working /users/1 URL; 
+  # it endows our sample application with all the actions needed for 
+  # a RESTful Users resource,5 along with a large number of named routes (Section 5.3.3) 
+  # for generating user URLs. The resulting correspondence of URLs, actions, 
+  # and named routes is shown in Table 7.1. (Compare to Table 2.2.) Over the 
+  # course of the next three chapters, we’ll cover all of the other entries in 
+  # Table 7.1 as we fill in all the actions necessary to make Users a fully RESTful resource.
+  resources :users
+  
   root  'static_pages#home'
+  match '/signup',  to: 'users#new',            via: 'get'
+    
   match '/signup',  to: 'users#new',            via: 'get'
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'

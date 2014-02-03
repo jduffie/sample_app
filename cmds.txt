@@ -1,0 +1,18 @@
+User.create(name: "Michael Hartl", email: "mhartl@example.com", password: "foobar", password_confirmation: "foobar")
+
+email = "MHARTL@example.COM".
+Digest::MD5::hexdigest(email.downcase)
+
+
+user = User.first
+user.update_attributes(name: "Example User", email: "example@railstutorial.org", password: "foobar", password_confirmation: "foobar")
+
+visit signup_path
+fill_in "Name", with: "Example User"
+
+click_button "Create my account"
+
+
+user = User.new(name: "Foo Bar", email: "foo@invalid", password: "dude", password_confirmation: "dude")
+user.save
+user.errors.full_messages
