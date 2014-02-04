@@ -21,6 +21,10 @@ describe User do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   
+  # token used for tracking sessions (cookie)
+  it { should respond_to(:remember_token) }
+  
+  
   # implies the authenticate method should return non-false
   it { should respond_to(:authenticate) }
   
@@ -125,5 +129,11 @@ describe User do
       specify { expect(user_for_invalid_password).to be_false }
     end
   end
+  
+  describe "remember token" do
+    before { @user.save }
+    its(:remember_token) { should_not be_blank }
+  end  
+
 end  
   
